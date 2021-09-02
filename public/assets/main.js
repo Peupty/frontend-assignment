@@ -26,8 +26,7 @@
 
   const handleResize = () => {
     if (isMobile()) {
-      removeClass(loadMoreButton, 'hidden')
-      loadMoreButton.addEventListener("click", handleClick);
+      removeClass(loadMoreButton, "hidden");
       hideElements(paragraphs, visibleParagraphs);
     } else {
       visibleParagraphs = paragraphs.length;
