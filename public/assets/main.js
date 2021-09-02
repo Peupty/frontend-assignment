@@ -1,16 +1,20 @@
 (mobileBreakpoint => {
   "use srict";
   let visibleParagraphs;
-  // toggles .hidden css class on elements with index >= hideFrom
-  const hideElements = (elements, hideFrom) =>
-    elements.forEach((element, index) => {
-      index >= hideFrom
-        ? element.classList.add("hidden")
-        : element.classList.remove("hidden");
-    });
+  const addClass = (el, cssClass) => el.classList.add(cssClass);
+  const removeClass = (el, cssClass) => el.classList.remove(cssClass);
+  const hideElements = (elements, hideFrom = 0) => {
+    if (Array.isArray(elements)) {
+      elements.forEach((el, index) => {
+        index >= hideFrom ? addClass(el, "hidden") : removeClass(el, "hidden");
+      });
+    } else {
+      addClass(elements, "hidden");
+    }
+  };
   const paragraphs = Array.from(document.getElementsByClassName("paragraph"));
   const loadMoreButton = document.querySelector("#load-more");
-  const hideLoadMoreButton = () => hideElements([loadMoreButton], 0);
+  const hideLoadMoreButton = () => hideElements(loadMoreButton);
 
   const handleClick = () => {
     if (visibleParagraphs + 1 <= paragraphs.length) {
