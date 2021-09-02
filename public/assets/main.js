@@ -61,6 +61,5 @@
 
   init();
 
-  window.addEventListener("resize", handleResize);
   window.onbeforeunload = () => removeListeners(listenerList);
 })(1064);
