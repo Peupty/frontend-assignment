@@ -1,8 +1,14 @@
 (mobileBreakpoint => {
   "use srict";
   let visibleParagraphs;
+  const paragraphs = Array.from(document.getElementsByClassName("paragraph"));
+  const loadMoreButton = document.querySelector("#load-more");
+
   const addClass = (el, cssClass) => el.classList.add(cssClass);
   const removeClass = (el, cssClass) => el.classList.remove(cssClass);
+  const isMobile = () => window.innerWidth < mobileBreakpoint;
+  const hideLoadMoreButton = () => hideElements(loadMoreButton);
+
   const hideElements = (elements, hideFrom = 0) => {
     if (Array.isArray(elements)) {
       elements.forEach((el, index) => {
@@ -12,9 +18,6 @@
       addClass(elements, "hidden");
     }
   };
-  const paragraphs = Array.from(document.getElementsByClassName("paragraph"));
-  const loadMoreButton = document.querySelector("#load-more");
-  const hideLoadMoreButton = () => hideElements(loadMoreButton);
 
   const handleClick = () => {
     if (visibleParagraphs + 1 <= paragraphs.length) {
@@ -22,7 +25,6 @@
       hideElements(paragraphs, visibleParagraphs);
     }
   };
-  const isMobile = () => window.innerWidth < mobileBreakpoint;
 
   const handleResize = () => {
     if (isMobile()) {
