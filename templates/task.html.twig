@@ -6,4 +6,16 @@
     paragraphs (array of paragraphs)
 #}
 
-I render correctly
+<article class="wrapper">
+    <div class="col">
+        <h1 class="heading">{{ heading }}</h1>
+        <h2 class="subheading">{{ subheading }}</h2>
+    </div>
+    <div class="content">
+        {% for paragraph in paragraphs %}
+            <p class="paragraph">{{ paragraph }}</p>
+        {% endfor %}
+        <button class="button hidden" id="load-more">Read more</button>
+    </div>
+    <img class="image" src={{ image }} />
+</article>
